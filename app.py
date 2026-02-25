@@ -4,6 +4,9 @@ from flask import Flask,redirect,url_for,send_file,request
 import os
 app=Flask(__name__)
 history_dir='history'
+
+#Roi
+#Show HTML file
 @app.route("/")
 def home():
     return send_file("index.html")
@@ -12,7 +15,8 @@ def home():
 @app.route('/<room>')
 def start_chat(room):
     return send_file('index.html')
-
+#Roi
+#Retrieves the chat history for a specific room
 @app.route('/api/chat/<room>', methods=['GET'])
 def api_chat_get(room):
     chat_history=""
@@ -53,4 +57,4 @@ def page_not_found(e):
     return redirect(url_for("home"))
 
 if __name__=="__main__":
-    app.run(host="0.0.0.0",port="5000")
+    app.run(host="0.0.0.0",port=5000)
