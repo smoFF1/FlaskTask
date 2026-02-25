@@ -56,5 +56,5 @@ def api_chat_post(room):
 def page_not_found(e):
     return redirect(url_for("home"))
 
-if __name__=="__main__":
-    app.run(host="0.0.0.0",port=5000)
+#if __name__=="__main__":
+ #   app.run(host="0.0.0.0",port=5000)

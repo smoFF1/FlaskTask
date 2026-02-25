@@ -1,13 +1,22 @@
 import mysql.connector
-
+import time
 
 def get_db_connection():
-    return mysql.connector.connect(
-        host="db",          
-        user="root",         
-        password="root",   
-        database="chat_db"
-    )
+    retries = 5
+    while retries > 0:
+        try:
+            return mysql.connector.connect(
+                host="db",          
+                user="root",         
+                password="root",   
+                database="chat_db"
+            )
+        except mysql.connector.Error:
+            print("Database not ready yet, waiting 3 seconds...")
+            time.sleep(3)
+            retries -= 1
+    raise Exception("Could not connect to database after multiple retries")
+
 def init_db():
     try:
         conn = get_db_connection()
@@ -27,5 +36,3 @@ def init_db():
         print("Database initialized successfully!")
     except mysql.connector.Error as err:
         print(f"Error: Could not initialize database - {err}")
-
-init_db()
