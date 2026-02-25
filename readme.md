@@ -1,1 +1,1 @@
-this is Roi and Sami project
+run 'pip install -r requirements.txt
